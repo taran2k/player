@@ -49,6 +49,7 @@ export class MediaAudioLayoutElement
     this.#media = useMediaContext();
 
     this.classList.add('vds-audio-layout');
+    this.menuContainer = createMenuContainer(this, 'vds-audio-layout', () => this.isSmallLayout);
 
     this.#setupWatchScrubbing();
   }

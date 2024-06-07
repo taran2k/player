@@ -51,6 +51,9 @@ export class MediaVideoLayoutElement
     this.#media = useMediaContext();
 
     this.classList.add('vds-video-layout');
+    this.menuContainer = createMenuContainer(this, 'vds-video-layout', () => this.isSmallLayout);
+
+    onDispose(() => this.menuContainer?.remove());
   }
 
   protected onConnect() {

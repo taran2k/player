@@ -18,16 +18,15 @@ export function MenuPortal(
   `;
 }
 
-export function createMenuContainer(
-  layoutEl: HTMLElement,
-  rootSelector: string | HTMLElement | null,
-  className: string,
-  isSmallLayout: ReadSignal<boolean>,
-) {
-  let root = isString(rootSelector) ? document.querySelector(rootSelector) : rootSelector;
+export function createMenuContainer(layoutElement: Element, className: string, isSmallLayout: ReadSignal<boolean>) {
+  let container = document.querySelector<HTMLElement>(`body > .${className}`);
 
-  // Check whether we can find a parent <dialog> element.
-  if (!root) root = layoutEl?.closest('dialog');
+  if (!container) {
+    container = document.createElement('div');
+    container.style.display = 'contents';
+    container.classList.add(className);
+    document.layoutElement.after(container);
+  }
 
   // Default to body.
   if (!root) root = document.body;
